@@ -1,15 +1,15 @@
 var CatStore = ((oldCatStore) => {
 
 	oldCatStore.combineArrays = (cats, owners) => {
-		//combine arrays
+		// debugger;
 		cats.forEach((cat) => {
 			owners.forEach((owner) => {
-				if (cat.ownerID === owner.id) {
+				if (cat.ownerId === owner.id) {
 					cat.owner = owner.name;
 				}
 			});
 		});
-		CatStore.domString(cats);
+		CatStore.writeToDom(cats);
 	};
 
 	oldCatStore.writeToDom = (inputArray) => {
@@ -31,16 +31,14 @@ var CatStore = ((oldCatStore) => {
             newCat+= `</div>`
             catz += newCat;
         }
-		CatStore.writeToDom(catz);
+		CatStore.domString(catz);
+		// console.log(catz);
 	};
 
 	oldCatStore.domString = (strang) => {
 		var outputEl = document.getElementById("outputdiv");
 		outputEl.innerHTML = strang;
 	};
-
-
-
 
 	return oldCatStore;
 })(CatStore || {})
